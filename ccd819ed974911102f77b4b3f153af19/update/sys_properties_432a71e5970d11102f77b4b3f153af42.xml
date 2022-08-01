@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties">
+    <sys_properties action="INSERT_OR_UPDATE">
+        <choices/>
+        <description>Enable URL attachments:&#13;
+Instead of uploading a file directly, the user can instead provide a download link that will be shown as a regular attachment.&#13;
+If the users clicks the attachment link, he will be redirected to the URL that was provided when creating the attachment.&#13;
+&#13;
+This property will modify the attachment links on the forms as well as the attachment popup, depending on the mode configured in property x_376096_va.virtual_attachments.mode.&#13;
+&#13;
+Note: This property is the dead man's switch: If set to false, all virtual attachment related script are deactivated instantly.</description>
+        <ignore_cache>true</ignore_cache>
+        <is_private>false</is_private>
+        <name>x_376096_va.virtual_attachments.enabled</name>
+        <read_roles/>
+        <suffix>virtual_attachments.enabled</suffix>
+        <sys_class_name>sys_properties</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-01 09:42:31</sys_created_on>
+        <sys_id>432a71e5970d11102f77b4b3f153af42</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_376096_va.virtual_attachments.enabled</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_update_name>sys_properties_432a71e5970d11102f77b4b3f153af42</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-01 09:42:31</sys_updated_on>
+        <type>boolean</type>
+        <value>true</value>
+        <write_roles/>
+    </sys_properties>
+    <sys_translated_text action="delete_multiple" query="documentkey=432a71e5970d11102f77b4b3f153af42"/>
+</record_update>

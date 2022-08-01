@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_properties_category_m2m">
+    <sys_properties_category_m2m action="INSERT_OR_UPDATE">
+        <category display_value="Virtual Attachments">fcca3de5970d11102f77b4b3f153af8d</category>
+        <order>100</order>
+        <property display_value="x_376096_va.virtual_attachments.enabled" name="x_376096_va.virtual_attachments.enabled">432a71e5970d11102f77b4b3f153af42</property>
+        <sys_class_name>sys_properties_category_m2m</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-01 09:45:23</sys_created_on>
+        <sys_id>d50b3de5970d11102f77b4b3f153afeb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_376096_va.virtual_attachments.enabled.Virtual Attachments</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_update_name>sys_properties_category_m2m_d50b3de5970d11102f77b4b3f153afeb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-01 09:45:23</sys_updated_on>
+    </sys_properties_category_m2m>
+</record_update>

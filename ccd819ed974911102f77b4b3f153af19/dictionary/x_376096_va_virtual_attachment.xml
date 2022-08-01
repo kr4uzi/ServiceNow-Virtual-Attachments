@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Virtual Attachment" max_length="40" name="x_376096_va_virtual_attachment" sizeclass="0" type="collection">
+        <element label="Attachment" max_length="32" name="attachment" reference="sys_attachment" reference_cascade_rule="cascade" type="reference"/>
+        <index name="index">
+            <element name="attachment"/>
+        </index>
+    </element>
+</database>
