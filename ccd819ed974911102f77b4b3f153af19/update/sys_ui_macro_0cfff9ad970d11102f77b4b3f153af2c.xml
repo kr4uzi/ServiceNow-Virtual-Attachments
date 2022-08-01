@@ -10,16 +10,39 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 10:08:46</sys_created_on>
         <sys_id>0cfff9ad970d11102f77b4b3f153af2c</sys_id>
-        <sys_mod_count>8</sys_mod_count>
+        <sys_mod_count>9</sys_mod_count>
         <sys_name>virtual_attachments</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_update_name>sys_ui_macro_0cfff9ad970d11102f77b4b3f153af2c</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 11:35:45</sys_updated_on>
+        <sys_updated_on>2022-08-01 13:40:18</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	<!--
+MIT License
+
+Copyright (c) 2022 Markus Kraus
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+	-->
 	<g2:evaluate var="jvar_config" expression="JSON.stringify(new ConfigUtil().generate(current.getTableName(), current.getUniqueValue(), current.isNewRecord(), true))" />
 	<script>
 		var x_376096_va=x_376096_va||{};x_376096_va.config=function(){if(x_376096_va.config)return x_376096_va.config;var _=JSON.parse("$[jvar_config]");return x_376096_va.loader${AND}x_376096_va.loader.set("config",_),_}();
