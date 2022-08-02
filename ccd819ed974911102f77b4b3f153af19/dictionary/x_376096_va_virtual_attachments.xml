@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Virtual Attachments" max_length="40" name="x_376096_va_virtual_attachments" type="collection">
-        <element label="Attachment" max_length="32" name="attachment" reference="sys_attachment" reference_cascade_rule="delete" type="reference"/>
-        <index name="index">
-            <element name="attachment"/>
-        </index>
-    </element>
-</database>

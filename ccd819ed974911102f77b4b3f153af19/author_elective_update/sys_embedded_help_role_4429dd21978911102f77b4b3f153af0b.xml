@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role">
+    <sys_embedded_help_role action="DELETE">
+        <order>1000</order>
+        <role/>
+        <sys_class_name>sys_embedded_help_role</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-01 07:17:18</sys_created_on>
+        <sys_id>4429dd21978911102f77b4b3f153af0b</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4829dd21978911102f77b4b3f153af08</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_update_name>sys_embedded_help_role_4429dd21978911102f77b4b3f153af0b</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-01 07:17:18</sys_updated_on>
+    </sys_embedded_help_role>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</application>
+        <file_path/>
+        <instance_id>fc1106b9dbd7c4588aea21c405961986</instance_id>
+        <instance_name>dev101909</instance_name>
+        <name>sys_embedded_help_role_4429dd21978911102f77b4b3f153af0b</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_embedded_help_role"><sys_embedded_help_role action="INSERT_OR_UPDATE"><order>1000</order><role/><sys_class_name>sys_embedded_help_role</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-08-01 07:17:18</sys_created_on><sys_id>4429dd21978911102f77b4b3f153af0b</sys_id><sys_mod_count>0</sys_mod_count><sys_name>4829dd21978911102f77b4b3f153af08</sys_name><sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package><sys_policy/><sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope><sys_update_name>sys_embedded_help_role_4429dd21978911102f77b4b3f153af0b</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-08-01 07:17:18</sys_updated_on></sys_embedded_help_role></record_update>]]></payload>
+        <payload_hash>1825682904</payload_hash>
+        <record_name/>
+        <reverted_from/>
+        <source>9486d6719741111070bc1c800153af7c</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-02 06:25:22</sys_created_on>
+        <sys_id>51d69ab19741111070bc1c800153af58</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1825d3afaaa0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-02 06:25:22</sys_updated_on>
+        <type>Embedded Help Role Priority</type>
+        <update_guid>9dd69ab19c411110d3a5e0ea2b9d5657</update_guid>
+        <update_guid_history>9dd69ab19c411110d3a5e0ea2b9d5657:0,bd769a7177411110e49a889572dc65d5:0,95a016a1fe8d1110a50b7d0aaa53c0fe:1586047241,4bf40665364d1110a964127a4bb19b98:1825682904</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-02 06:25:26</sys_created_on>
+        <sys_db_object display_value="" name="sys_embedded_help_role">sys_embedded_help_role</sys_db_object>
+        <sys_id>11f01efa998c4fb2a5d2954129149204</sys_id>
+        <sys_metadata>4429dd21978911102f77b4b3f153af0b</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>4829dd21978911102f77b4b3f153af08</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_scope_delete display_value="">c0d9bc1525044fb4aba3e5e14eff3264</sys_scope_delete>
+        <sys_update_name>sys_embedded_help_role_4429dd21978911102f77b4b3f153af0b</sys_update_name>
+        <sys_update_version display_value="sys_embedded_help_role_4429dd21978911102f77b4b3f153af0b">51d69ab19741111070bc1c800153af58</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-08-02 06:25:26</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
