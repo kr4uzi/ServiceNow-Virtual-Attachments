@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element db_object_id="052a925087b5111021d6fcc5dabb3570" label="Template File" max_length="40" name="x_376096_va_template_file" type="collection">
+        <element label="File" mandatory="true" max_length="40" name="file" type="file_attachment"/>
+        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+    </element>
+</database>

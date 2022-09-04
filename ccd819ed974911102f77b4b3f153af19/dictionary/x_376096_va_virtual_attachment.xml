@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
-    <element label="Virtual Attachment" max_length="40" name="x_376096_va_virtual_attachment" sizeclass="0" type="collection">
+    <element db_object_id="7aaf82948775111021d6fcc5dabb3582" label="Virtual Attachment" max_length="40" name="x_376096_va_virtual_attachment" type="collection">
         <element label="Attachment" max_length="32" name="attachment" reference="sys_attachment" reference_cascade_rule="cascade" type="reference"/>
+        <element label="URL" max_length="1024" name="url" type="url"/>
         <index name="index">
             <element name="attachment"/>
         </index>

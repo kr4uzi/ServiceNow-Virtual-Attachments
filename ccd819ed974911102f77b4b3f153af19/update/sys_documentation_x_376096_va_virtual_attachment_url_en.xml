@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="url" label="URL" language="en" table="x_376096_va_virtual_attachment">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>url</element>
+            <help/>
+            <hint/>
+            <label>URL</label>
+            <language>en</language>
+            <name>x_376096_va_virtual_attachment</name>
+            <plural>URLs</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-09-03 20:56:07</sys_created_on>
+            <sys_name>URL</sys_name>
+            <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+            <sys_update_name>sys_documentation_x_376096_va_virtual_attachment_url_en</sys_update_name>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

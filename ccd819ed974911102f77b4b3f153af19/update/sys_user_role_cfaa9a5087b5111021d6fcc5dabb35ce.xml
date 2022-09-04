@@ -6,21 +6,18 @@
         <elevated_privilege>false</elevated_privilege>
         <grantable>true</grantable>
         <includes_roles/>
-        <name>x_376096_va.virtual_attachment_user</name>
+        <name>x_376096_va.virtual_attachment_admin</name>
         <requires_subscription>-1</requires_subscription>
         <scoped_admin>false</scoped_admin>
-        <suffix>virtual_attachment_user</suffix>
+        <suffix>virtual_attachment_admin</suffix>
         <sys_class_name>sys_user_role</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-08-01 10:27:47</sys_created_on>
-        <sys_id>16b40a25974d11102f77b4b3f153af72</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>x_376096_va.virtual_attachment_user</sys_name>
+        <sys_created_on>2022-09-03 21:38:41</sys_created_on>
+        <sys_id>cfaa9a5087b5111021d6fcc5dabb35ce</sys_id>
+        <sys_name>x_376096_va.virtual_attachment_admin</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
-        <sys_update_name>sys_user_role_16b40a25974d11102f77b4b3f153af72</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 10:27:47</sys_updated_on>
+        <sys_update_name>sys_user_role_cfaa9a5087b5111021d6fcc5dabb35ce</sys_update_name>
     </sys_user_role>
 </record_update>

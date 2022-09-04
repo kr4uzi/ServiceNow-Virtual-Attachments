@@ -4,16 +4,13 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 10:27:47</sys_created_on>
         <sys_id>aab44a25974d11102f77b4b3f153af6b</sys_id>
-        <sys_mod_count>0</sys_mod_count>
-        <sys_name>x_376096_va_virtual_attachment.x_376096_va.virtual_attachment_user</sys_name>
+        <sys_name>x_376096_va_virtual_attachment.public</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_security_acl display_value="x_376096_va_virtual_attachment">eeb44a25974d11102f77b4b3f153af5b</sys_security_acl>
         <sys_update_name>sys_security_acl_role_aab44a25974d11102f77b4b3f153af6b</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 10:27:47</sys_updated_on>
-        <sys_user_role display_value="x_376096_va.virtual_attachment_user" name="x_376096_va.virtual_attachment_user">16b40a25974d11102f77b4b3f153af72</sys_user_role>
+        <sys_user_role display_value="public" name="public">b0593b350a0a0aa7001d689e4542dc28</sys_user_role>
         <transaction_id/>
     </sys_security_acl_role>
 </record_update>

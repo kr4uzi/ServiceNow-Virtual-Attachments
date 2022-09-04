@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="DELETE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>false</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>sys_attachment</collection>
+        <condition>gs.getProperty('x_376096_va.virtual_attachments.enabled') == 'true'</condition>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>VA Virtual Attachments</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[/*
+MIT License
+
+Copyright (c) 2022 Markus Kraus
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+(function executeRule(current, previous /*null when async*/) {
+
+	var uri = gs.action.getGlideURI();
+	var url = uri.get("x_376096_va_virtual_attachment_url");
+	if (url) {
+		var virtualAttGr = new GlideRecord('x_376096_va_virtual_attachment');
+		virtualAttGr.initialize();
+		virtualAttGr.attachment = current.sys_id;
+		virtualAttGr.url = url;
+		virtualAttGr.insert();
+	}
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-08-01 10:28:25</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>9b64cee1974d11102f77b4b3f153af20</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>VA Virtual Attachments</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_update_name>sys_script_9b64cee1974d11102f77b4b3f153af20</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-04 14:50:16</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="DELETE" query="documentkey=9b64cee1974d11102f77b4b3f153af20"/>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</application>
+        <file_path/>
+        <instance_id>2ca27526dbf6491042b321c405961935</instance_id>
+        <instance_name>dev126060</instance_name>
+        <name>sys_script_9b64cee1974d11102f77b4b3f153af20</name>
+        <payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update sys_domain="global" table="sys_script"&gt;&lt;sys_script action="INSERT_OR_UPDATE"&gt;&lt;abort_action&gt;false&lt;/abort_action&gt;&lt;access&gt;package_private&lt;/access&gt;&lt;action_delete&gt;false&lt;/action_delete&gt;&lt;action_insert&gt;true&lt;/action_insert&gt;&lt;action_query&gt;false&lt;/action_query&gt;&lt;action_update&gt;false&lt;/action_update&gt;&lt;active&gt;false&lt;/active&gt;&lt;add_message&gt;false&lt;/add_message&gt;&lt;advanced&gt;true&lt;/advanced&gt;&lt;change_fields&gt;false&lt;/change_fields&gt;&lt;client_callable&gt;false&lt;/client_callable&gt;&lt;collection&gt;sys_attachment&lt;/collection&gt;&lt;condition&gt;gs.getProperty('x_376096_va.virtual_attachments.enabled') == 'true'&lt;/condition&gt;&lt;description/&gt;&lt;execute_function&gt;false&lt;/execute_function&gt;&lt;filter_condition/&gt;&lt;is_rest&gt;false&lt;/is_rest&gt;&lt;message/&gt;&lt;name&gt;VA Virtual Attachments&lt;/name&gt;&lt;order&gt;100&lt;/order&gt;&lt;priority&gt;100&lt;/priority&gt;&lt;rest_method/&gt;&lt;rest_method_text/&gt;&lt;rest_service/&gt;&lt;rest_service_text/&gt;&lt;rest_variables/&gt;&lt;role_conditions/&gt;&lt;script&gt;&lt;![CDATA[/*
+MIT License
+
+Copyright (c) 2022 Markus Kraus
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
+(function executeRule(current, previous /*null when async*/) {
+
+	var uri = gs.action.getGlideURI();
+	var url = uri.get("x_376096_va_virtual_attachment_url");
+	if (url) {
+		var virtualAttGr = new GlideRecord('x_376096_va_virtual_attachment');
+		virtualAttGr.initialize();
+		virtualAttGr.attachment = current.sys_id;
+		virtualAttGr.url = url;
+		virtualAttGr.insert();
+	}
+
+})(current, previous);]]&gt;&lt;/script&gt;&lt;sys_class_name&gt;sys_script&lt;/sys_class_name&gt;&lt;sys_created_by&gt;admin&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2022-08-01 10:28:25&lt;/sys_created_on&gt;&lt;sys_domain&gt;global&lt;/sys_domain&gt;&lt;sys_domain_path&gt;/&lt;/sys_domain_path&gt;&lt;sys_id&gt;9b64cee1974d11102f77b4b3f153af20&lt;/sys_id&gt;&lt;sys_mod_count&gt;9&lt;/sys_mod_count&gt;&lt;sys_name&gt;VA Virtual Attachments&lt;/sys_name&gt;&lt;sys_overrides/&gt;&lt;sys_package display_value="Virtual Attachments" source="x_376096_va"&gt;ccd819ed974911102f77b4b3f153af19&lt;/sys_package&gt;&lt;sys_policy/&gt;&lt;sys_scope display_value="Virtual Attachments"&gt;ccd819ed974911102f77b4b3f153af19&lt;/sys_scope&gt;&lt;sys_update_name&gt;sys_script_9b64cee1974d11102f77b4b3f153af20&lt;/sys_update_name&gt;&lt;sys_updated_by&gt;admin&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2022-09-04 14:50:16&lt;/sys_updated_on&gt;&lt;template/&gt;&lt;when&gt;before&lt;/when&gt;&lt;/sys_script&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=9b64cee1974d11102f77b4b3f153af20"/&gt;&lt;/record_update&gt;</payload>
+        <payload_hash>1810472098</payload_hash>
+        <record_name>VA Virtual Attachments</record_name>
+        <reverted_from/>
+        <source>92bf06d88735111021d6fcc5dabb35ee</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-04 14:50:16</sys_created_on>
+        <sys_id>03d68aec87f1511021d6fcc5dabb35eb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>18308fb16230000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-04 14:50:16</sys_updated_on>
+        <type>Business Rule</type>
+        <update_guid>87d68aec8df1511094c67be9c447efea</update_guid>
+        <update_guid_history>87d68aec8df1511094c67be9c447efea:1810472098,2df192584f75111007b22c4a751f6063:2060360083,9fafc2944e7511107653ca44065830ce:-530921176</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-04 17:01:26</sys_created_on>
+        <sys_db_object display_value="" name="sys_script">sys_script</sys_db_object>
+        <sys_id>3bccfe0cc424428cb25bf2026cf78d10</sys_id>
+        <sys_metadata>9b64cee1974d11102f77b4b3f153af20</sys_metadata>
+        <sys_name>VA Virtual Attachments</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_parent display_value="Sys Attachment">c870e333753011108c8b143dd0c59ff1</sys_parent>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_scope_delete display_value="">c0d9bc1525044fb4aba3e5e14eff3264</sys_scope_delete>
+        <sys_update_name>sys_script_9b64cee1974d11102f77b4b3f153af20</sys_update_name>
+        <sys_update_version display_value="sys_script_9b64cee1974d11102f77b4b3f153af20">03d68aec87f1511021d6fcc5dabb35eb</sys_update_version>
+    </sys_metadata_delete>
+</record_update>

@@ -10,17 +10,14 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 10:08:46</sys_created_on>
         <sys_id>0cfff9ad970d11102f77b4b3f153af2c</sys_id>
-        <sys_mod_count>13</sys_mod_count>
         <sys_name>virtual_attachments</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_update_name>sys_ui_macro_0cfff9ad970d11102f77b4b3f153af2c</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 14:54:04</sys_updated_on>
         <xml><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
 <j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
-	<!--
+<!--
 MIT License
 
 Copyright (c) 2022 Markus Kraus
@@ -42,7 +39,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-	-->
+-->
 	<g2:evaluate var="jvar_config" expression="JSON.stringify(new ConfigUtil().generate(current.getTableName(), current.getUniqueValue(), current.isNewRecord(), true))" />
 	<script>
 		var x_376096_va=x_376096_va||{};x_376096_va.config=function(){if(x_376096_va.config)return x_376096_va.config;var _=JSON.parse("$[jvar_config]");return x_376096_va.loader$[AND]x_376096_va.loader.set("config",_),_}();

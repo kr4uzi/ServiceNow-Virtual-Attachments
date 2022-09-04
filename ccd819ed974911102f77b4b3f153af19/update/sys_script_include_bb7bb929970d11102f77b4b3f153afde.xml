@@ -10,7 +10,7 @@
         <script><![CDATA[/*
 MIT License
 
-Copyright (c) 2022 kr4uzi
+Copyright (c) 2022 Markus Kraus
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,99 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-var ConfigUtil=Class.create();ConfigUtil.MIME_CONFIG={csv:{s:[],t:"text/csv"},txt:{s:[],t:"text/plain"},json:{s:[],t:"application/json"},zip:{s:[80,75,3,4],t:"application/zip"},docx:{s:[80,75,3,4],t:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"},xlsx:{s:[80,75,3,4],t:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"},pptx:{s:[80,75,3,4],t:"application/vnd.openxmlformats-officedocument.presentationml.presentation"},vsdx:{s:[80,75,3,4],t:"application/vnd.ms-visio.drawing"},jar:{s:[80,75,3,4],t:"application/java-archive"},pdf:{s:[37,80,68,70,45],t:"application/pdf"},doc:{s:[208,207,17,224,161,177,26,225],t:"application/msword"},xls:{s:[208,207,17,224,161,177,26,225],t:"application/vnd.ms-excel"},xml:{s:[60,0,63,0,120,0,109,0,108,0,32],t:"application/xml"},jpg:{s:[255,216,255,238],t:"image/jpeg"},jpeg:{s:[255,216,255,238],t:"image/jpeg"},png:{s:[137,80,78,71,13,10,26,10],t:"image/png"},eml:{s:[82,101,99,101,105,118,101,100,58],t:"message/rfc822"}},ConfigUtil.MIME_RESOLVE={"text/csv":0,"text/plain":0,"application/json":0,"application/zip":4,"application/vnd.openxmlformats-officedocument.wordprocessingml.document":4,"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":4,"application/vnd.openxmlformats-officedocument.presentationml.presentation":4,"application/vnd.ms-visio.drawing":4,"application/java-archive":4,"application/pdf":5,"application/msword":8,"application/vnd.ms-excel":8,"application/xml":11,"image/jpeg":4,"image/png":8,"message/rfc822":9},ConfigUtil.prototype=Object.extendsObject(global.AbstractAjaxProcessor,{generate:function(e,t,a,i){"generate"==this.getName()&&(e=this.getParameter("table"),t=this.getParameter("sys_id"),a="true"==this.getParameter("new_record"));var n,s,o={mime_config:ConfigUtil.MIME_CONFIG,translations:{},enabled:"true"===gs.getProperty("x_376096_va.virtual_attachments.enabled"),table:e,sys_id:t,new_record:a,formatter:!!i};if(o.enabled&&(o.translations.External=gs.getMessage("External"),"global"===(n=gs.getProperty("x_376096_va.virtual_attachments.mode"))||("tables"===n?(s=gs.getProperty("x_376096_va.virtual_attachments.tables")||"",e&&(o.enabled=-1<s.indexOf(e))):"script"===n?e&&t?((s=new GlideRecord("sys_properties")).addQuery("name","x_376096_va.virtual_attachments.script"),s.setLimit(1),s.query(),s.next()?(a=(new GlideScopedEvaluator).evaluateScript(s,"value",{table:e,sys_id:t,new_record:a}),o.enabled=!!a):o.enabled=!1):o.enabled=!1:o.enabled="formatter"===n&&!!i)),o.enabled){var r=new GlideSysAttachment;o.attachments={};var l=new GlideRecordSecure("sys_attachment");for(l.addQuery("table_name",e),l.addQuery("table_sys_id",t),l.addJoinQuery("x_376096_va_virtual_attachment","sys_id","attachment"),l.query();l.next();){var p=r.getContent(l),c=ConfigUtil.MIME_RESOLVE[l.content_type];c&&(p=p.substr(c)),o.attachments[l.getUniqueValue()]={virtual:!0,url:p}}}return"generate"==this.getName()?JSON.stringify(o):o},type:"ConfigUtil"});]]></script>
+/* global global, gs, Class, GlideRecord, GlideRecordSecure, GlideScopedEvaluator, GlideSysAttachment */
+/* eslint no-undef: "error" */
+var ConfigUtil = Class.create();
+ConfigUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	generate: function (table, sys_id, new_record, formatter) {
+		if (this.getName() == 'generate') {
+			table = this.getParameter('table');
+			sys_id = this.getParameter('sys_id');
+			new_record = this.getParameter('new_record') == 'true';
+		}
+		
+		var config = {
+			translations: {},
+			enabled: gs.getProperty('x_376096_va.virtual_attachments.enabled') === 'true',
+			table: table,
+			sys_id: sys_id,
+			new_record: new_record,
+			formatter: !!formatter
+		};
+		
+		if (config.enabled) {
+			config.translations['Add Virtual Attachment'] = gs.getMessage('Add Virtual Attachment');
+			
+			var mode = gs.getProperty('x_376096_va.virtual_attachments.mode');
+			if (mode === 'global') {
+				// load attachments
+			} else if (mode === 'tables') {
+				var tables = gs.getProperty('x_376096_va.virtual_attachments.tables') || '';
+				if (table) {
+					config.enabled = tables.indexOf(table) > -1;
+				}
+			} else if (mode === 'script') {
+				if (table && sys_id) {
+					var propertyGr = new GlideRecord('sys_properties');
+					propertyGr.addQuery('name', 'x_376096_va.virtual_attachments.script');
+					propertyGr.setLimit(1);
+					propertyGr.query();
+					if (propertyGr.next()) {
+						var gse = new GlideScopedEvaluator();
+						var res = gse.evaluateScript(propertyGr, 'value', {
+							table: table,
+							sys_id: sys_id,
+							new_record: new_record
+						});
+						
+						config.enabled = !!res;
+					} else {
+						config.enabled = false;
+					}
+				} else {
+					config.enabled = false;
+				}
+			} else if (mode === 'formatter') {
+				config.enabled = !!formatter;
+			} else {
+				config.enabled = false;
+			}
+		}
+		
+		if (config.enabled) {
+			config.attachments = {};
+			
+			var vattGr = new GlideRecordSecure('x_376096_va_virtual_attachment');
+			vattGr.addJoinQuery('sys_attachment', 'attachment', 'sys_id')
+				.addCondition('table_name', table)
+				.addCondition('table_sys_id', sys_id);
+			vattGr.query();
+			while (vattGr.next()) {
+				config.attachments[vattGr.getValue('attachment')] = {
+					virtual: true,
+					url: vattGr.url.toString()
+				};
+			}
+		}
+		
+		if (this.getName() == 'generate') {
+			return JSON.stringify(config);
+		}
+		
+		return config;
+	},
+
+    type: 'ConfigUtil'
+});]]></script>
         <sys_class_name>sys_script_include</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 09:52:41</sys_created_on>
         <sys_id>bb7bb929970d11102f77b4b3f153afde</sys_id>
-        <sys_mod_count>10</sys_mod_count>
         <sys_name>ConfigUtil</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_update_name>sys_script_include_bb7bb929970d11102f77b4b3f153afde</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-02 06:28:31</sys_updated_on>
     </sys_script_include>
 </record_update>

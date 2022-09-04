@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition">
+    <sys_ws_definition action="DELETE">
+        <active>true</active>
+        <base_uri>/api/x_376096_va/template_file</base_uri>
+        <consumes>application/json,application/xml,text/xml</consumes>
+        <consumes_customized>false</consumes_customized>
+        <default_version>No active default version</default_version>
+        <doc_link/>
+        <enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl>
+        <is_versioned>false</is_versioned>
+        <name>Template File</name>
+        <namespace>x_376096_va</namespace>
+        <produces>application/json,application/xml,text/xml</produces>
+        <produces_customized>false</produces_customized>
+        <service_id>template_file</service_id>
+        <short_description/>
+        <sys_class_name>sys_ws_definition</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-03 22:05:54</sys_created_on>
+        <sys_id>a2e0a61887b5111021d6fcc5dabb35b8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Template File</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_update_name>sys_ws_definition_a2e0a61887b5111021d6fcc5dabb35b8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-03 22:05:54</sys_updated_on>
+    </sys_ws_definition>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</application>
+        <file_path/>
+        <instance_id>2ca27526dbf6491042b321c405961935</instance_id>
+        <instance_name>dev126060</instance_name>
+        <name>sys_ws_definition_a2e0a61887b5111021d6fcc5dabb35b8</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ws_definition"><sys_ws_definition action="INSERT_OR_UPDATE"><active>true</active><base_uri>/api/x_376096_va/template_file</base_uri><consumes>application/json,application/xml,text/xml</consumes><consumes_customized>false</consumes_customized><default_version>No active default version</default_version><doc_link/><enforce_acl>cf9d01d3e73003009d6247e603f6a990</enforce_acl><is_versioned>false</is_versioned><name>Template File</name><namespace>x_376096_va</namespace><produces>application/json,application/xml,text/xml</produces><produces_customized>false</produces_customized><service_id>template_file</service_id><short_description/><sys_class_name>sys_ws_definition</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2022-09-03 22:05:54</sys_created_on><sys_id>a2e0a61887b5111021d6fcc5dabb35b8</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Template File</sys_name><sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package><sys_policy/><sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope><sys_update_name>sys_ws_definition_a2e0a61887b5111021d6fcc5dabb35b8</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2022-09-03 22:05:54</sys_updated_on></sys_ws_definition></record_update>]]></payload>
+        <payload_hash>-206784509</payload_hash>
+        <record_name>Template File</record_name>
+        <reverted_from/>
+        <source>92bf06d88735111021d6fcc5dabb35ee</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-03 22:05:54</sys_created_on>
+        <sys_id>76f026d487b5111021d6fcc5dabb356c</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>1830563906e0000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2022-09-03 22:05:54</sys_updated_on>
+        <type>Scripted REST API</type>
+        <update_guid>bef026d494b51110ad871cad1bb94c6b</update_guid>
+        <update_guid_history>bef026d494b51110ad871cad1bb94c6b:-206784509</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2022-09-04 16:47:55</sys_created_on>
+        <sys_db_object display_value="" name="sys_ws_definition">sys_ws_definition</sys_db_object>
+        <sys_id>b545baef933343d8892dae7e17883ee4</sys_id>
+        <sys_metadata>a2e0a61887b5111021d6fcc5dabb35b8</sys_metadata>
+        <sys_name>Template File</sys_name>
+        <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
+        <sys_scope_delete display_value="">c0d9bc1525044fb4aba3e5e14eff3264</sys_scope_delete>
+        <sys_update_name>sys_ws_definition_a2e0a61887b5111021d6fcc5dabb35b8</sys_update_name>
+        <sys_update_version display_value="sys_ws_definition_a2e0a61887b5111021d6fcc5dabb35b8">76f026d487b5111021d6fcc5dabb356c</sys_update_version>
+    </sys_metadata_delete>
+</record_update>
