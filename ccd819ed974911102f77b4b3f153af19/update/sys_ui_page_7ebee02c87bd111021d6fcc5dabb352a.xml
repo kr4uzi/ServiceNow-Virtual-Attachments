@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update table="sys_ui_page">
     <sys_ui_page action="INSERT_OR_UPDATE">
         <category>general</category>
-        <client_script><![CDATA[/* global document */
+        <client_script><![CDATA[/* global window */
 /* eslint no-undef: "error" */
 function va_ClearAttachmentInput(errorMessage) {
-	var errorNode = document.getElementById('va_error_message');
+	var errorNode = window.document.getElementById('va_error_message');
 	if (errorMessage) {
 		errorNode.innerHTML = errorMessage;
 		errorNode.style.display = '';
 	} else {
 		errorNode.style.display = 'none';
+		
+		var successNode = window.document.getElementById('va_success_message');
+		successNode.style.opacity = '1';
+		successNode.style.transition = 'opacity 1s';
+		window.setTimeout(function () {
+			successNode.style.opacity = '0';
+			window.setTimeout(function () { 
+				successNode.style.transition = ''; 
+			}, 1000); 
+		}, 1000);
+
 	}
 	
-	document.getElementById('va_url').value = '';
-	document.getElementById('va_name').value = '';
-	document.getElementById('va_loading').style.display = 'none';
+	window.document.getElementById('va_url').value = '';
+	window.document.getElementById('va_name').value = '';
+	window.document.getElementById('va_loading').style.display = 'none';
 }
 
 function va_uploadVirtualAttachment(form) {
 	form.target="va_upload_target";
 	
-	var name = document.getElementById("va_name");
-	var url = document.getElementById("va_url");
-	var loading = document.getElementById("va_loading");
-	var name_error = document.getElementById("va_name_error");
-	var url_error = document.getElementById("va_url_error");
-	var record_table_name = document.getElementById("record_table_name").value;
-	var record_sys_id = document.getElementById("record_sys_id").value;
+	var name = window.document.getElementById("va_name");
+	var url = window.document.getElementById("va_url");
+	var loading = window.document.getElementById("va_loading");
+	var name_error = window.document.getElementById("va_name_error");
+	var url_error = window.document.getElementById("va_url_error");
+	var record_table_name = window.document.getElementById("record_table_name").value;
+	var record_sys_id = window.document.getElementById("record_sys_id").value;
 	if (url.value && name.value && record_table_name && record_sys_id) {
 		loading.style.display = '';
 		url.parentNode.classList.remove('has-error');
@@ -49,7 +60,7 @@ function va_uploadVirtualAttachment(form) {
 }
 
 function va_setFilenameFromURL(url) {
-	var nameNode = document.getElementById('va_name');
+	var nameNode = window.document.getElementById('va_name');
 	if (url && !nameNode.value) {
 		var matches = url.match(/[^/=\\&?]+\.\w{3,4}(?=([?&].*$|$))/g) || [];
 		if (matches && matches.length) {
@@ -133,7 +144,10 @@ SOFTWARE.
 				<div class="form-group">
 					<img id="va_loading" alt="${gs.getMessage('Please Wait')}" src="images/please_wait.gifx" style="margin: 6px 3px; display: none;" />
 				</div>
-				<button type="submit" class="btn btn-default pull-right">${gs.getMessage('Add')}</button>
+				<div class="form-group">
+					<span id="va_success_message" style="color: green; opacity: 0;">${gs.getMessage('Attachment uploaded')}</span>
+					<button type="submit" class="btn btn-default pull-right">${gs.getMessage('Add')}</button>
+				</div>
 			</g:ui_form>
 			<iframe name="va_upload_target" src="blank.do?sysparm_domain_restore=false" style="position:fixed;clip: rect(0,0,0,0);width:100%;height:0;border:0px solid #fff;" tabindex="-1" title="Attachments"></iframe>
 		</j:otherwise>
