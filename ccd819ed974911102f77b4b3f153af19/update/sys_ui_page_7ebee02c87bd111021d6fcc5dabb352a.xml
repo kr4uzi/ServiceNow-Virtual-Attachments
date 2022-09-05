@@ -3,7 +3,21 @@
         <category>general</category>
         <client_script><![CDATA[/* global document */
 /* eslint no-undef: "error" */
-function uploadVirtualAttachment(form) {
+function va_ClearAttachmentInput(errorMessage) {
+	var errorNode = document.getElementById('va_error_message');
+	if (errorMessage) {
+		errorNode.innerHTML = errorMessage;
+		errorNode.style.display = '';
+	} else {
+		errorNode.style.display = 'none';
+	}
+	
+	document.getElementById('va_url').value = '';
+	document.getElementById('va_name').value = '';
+	document.getElementById('va_loading').style.display = 'none';
+}
+
+function va_uploadVirtualAttachment(form) {
 	form.target="va_upload_target";
 	
 	var name = document.getElementById("va_name");
@@ -34,7 +48,7 @@ function uploadVirtualAttachment(form) {
 	return false;
 }
 
-function setFilenameFromURL(url) {
+function va_setFilenameFromURL(url) {
 	var nameNode = document.getElementById('va_name');
 	if (url && !nameNode.value) {
 		var matches = url.match(/[^/=\\&?]+\.\w{3,4}(?=([?&].*$|$))/g) || [];
@@ -72,53 +86,58 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 -->
 	<g:evaluate var="jvar_instance_url" expression="gs.getProperty('glide.servlet.uri').replace(/\/+$/, '')" />
+	
 	<g:evaluate var="jvar_file_url" expression="gs.getMessage('File URL')" />
 	<g:evaluate var="jvar_file_name" expression="gs.getMessage('File Name')" />
 	<g:evaluate var="jvar_url_missing" expression="gs.getMessage('invalid_missing_mandatory', gs.getMessage('File URL'))" />
 	<g:evaluate var="jvar_name_missing" expression="gs.getMessage('invalid_missing_mandatory', gs.getMessage('File Name'))" />
+	
 	<g:evaluate var="jvar_upload_success" expression="RP.getParameterValue('va_upload_success')" />
-	<script>
-		if ("${jvar_upload_success}" == "true") {
-			debugger;
-			window.parent.postMessage('va_upload_success', '${jvar_instance_url}');
-		}
-		
-		window.addEventListener("message", function (event) {
-			debugger;
-			if (event.origin != '${jvar_instance_url}') {
-				return;
-			}
-		
-			if (event.data == 'va_upload_success') {
-				document.getElementById('va_url').value = '';
-				document.getElementById('va_name').value = '';
-				document.getElementById('va_loading').style.display = 'none';
-			}
-		});
-	</script>
-	<g:ui_form onsubmit="return uploadVirtualAttachment(this)">
-		<input id="record_table_name" type="hidden" name="record_table_name" value="${sysparm_record_table_name}" />
-		<input id="record_sys_id" type="hidden" name="record_sys_id" value="${sysparm_record_sys_id}" />
-		<div class="form-group">
-			<label for="va_url" class="control-label">${jvar_file_url}</label>
-			<input id="va_url" name="va_url" type="url" class="form-control" onchange="setFilenameFromURL(this.value);" />
-			<p id="va_url_error" class="help-block" style="display: none;">${jvar_url_missing}</p>
-		</div>
-		<div class="form-group">
-			<label for="va_name" class="control-label">${jvar_file_name}</label>
-			<input id="va_name" name="va_name" class="form-control" />
-			<p id="va_name_error" class="help-block" style="display: none;">${jvar_name_missing}</p>
-		</div>
-		<div class="form-group">
-			<img id="va_loading" alt="${gs.getMessage('Please Wait')}" src="images/please_wait.gifx" style="margin: 6px 3px; display: none;" />
-		</div>
-		<button type="submit" class="btn btn-default pull-right">${gs.getMessage('Add')}</button>
-	</g:ui_form>
-	<iframe name="va_upload_target" src="blank.do?sysparm_domain_restore=false" style="position:fixed;clip: rect(0,0,0,0);width:100%;height:0;border:0px solid #fff;" tabindex="-1" title="Attachments"></iframe>
+	<g:evaluate var="jvar_upload_error_message" expression="RP.getParameterValue('va_upload_error_message')" />
+	
+	<g:evaluate var="jvar_upload_url" expression="RP.getParameterValue('va_upload_url')" />
+	<g:evaluate var="jvar_upload_name" expression="RP.getParameterValue('va_upload_name')" />
+	<g:evaluate var="jvar_upload_attachment_sys_id" expression="RP.getParameterValue('va_upload_attachment_sys_id')" />
+	<g:evaluate var="jvar_upload_icon" expression="RP.getParameterValue('va_upload_icon')" />
+	<j:choose>
+		<j:when test="${jvar_upload_success == 'true'}">
+			<script>
+				window.parent.va_ClearAttachmentInput();
+				window.parent.addAttachmentNameToForm('${jvar_upload_attachment_sys_id}', '${jvar_upload_name}', '${jvar_upload_url}', '${jvar_upload_icon}', 'true', 'true', 'false');
+			</script>
+		</j:when>
+		<j:when test="${jvar_upload_success == 'false'}">
+			<script>
+				window.parent.va_ClearAttachmentInput('${jvar_upload_error_message}');
+			</script>
+		</j:when>
+		<j:otherwise>
+			<g:ui_form onsubmit="return va_uploadVirtualAttachment(this)">
+				<input id="record_table_name" type="hidden" name="record_table_name" value="${sysparm_record_table_name}" />
+				<input id="record_sys_id" type="hidden" name="record_sys_id" value="${sysparm_record_sys_id}" />
+				<p id="va_error_message" class="help-block" style="display: none;"></p>
+				<div class="form-group">
+					<label for="va_url" class="control-label">${jvar_file_url}</label>
+					<input id="va_url" name="va_url" type="url" class="form-control" onchange="va_setFilenameFromURL(this.value);" />
+					<p id="va_url_error" class="help-block" style="display: none;">${jvar_url_missing}</p>
+				</div>
+				<div class="form-group">
+					<label for="va_name" class="control-label">${jvar_file_name}</label>
+					<input id="va_name" name="va_name" class="form-control" />
+					<p id="va_name_error" class="help-block" style="display: none;">${jvar_name_missing}</p>
+				</div>
+				<div class="form-group">
+					<img id="va_loading" alt="${gs.getMessage('Please Wait')}" src="images/please_wait.gifx" style="margin: 6px 3px; display: none;" />
+				</div>
+				<button type="submit" class="btn btn-default pull-right">${gs.getMessage('Add')}</button>
+			</g:ui_form>
+			<iframe name="va_upload_target" src="blank.do?sysparm_domain_restore=false" style="position:fixed;clip: rect(0,0,0,0);width:100%;height:0;border:0px solid #fff;" tabindex="-1" title="Attachments"></iframe>
+		</j:otherwise>
+	</j:choose>
 </j:jelly>]]></html>
         <name>virtual_attachment_upload</name>
         <processing_script><![CDATA[/* global request, response */
-/* global GlideRecord, GlideRecordSecure, GlideSysAttachment */
+/* global gs, GlideRecord, GlideRecordSecure, GlideSysAttachment, GlideURL */
 /* eslint no-undef: "error" */
 (function (request, response) {
 	// request [GlideServletRequest]
@@ -130,6 +149,7 @@ SOFTWARE.
 	// this
 	// [represents the values from the <g:ui_form>]
 	
+	var redirectURL = 'x_376096_va_virtual_attachment_upload.do';
 	if (this.record_table_name && this.record_sys_id && this.va_name && this.va_url) {
 		var recordGr = new GlideRecordSecure(this.record_table_name);
 		recordGr.addQuery('sys_id', this.record_sys_id);
@@ -145,8 +165,8 @@ SOFTWARE.
 			tfGr.setLimit(1);
 			tfGr.query();
 			
-			var handled = false;
 			var newAttSysId;
+			var newAttContentType = 'text/plain';
 			if (tfGr.next()) {
 				var attGr = new GlideRecord('sys_attachment');
 				attGr.addQuery('sys_id', tfGr.getValue('file'));
@@ -154,12 +174,14 @@ SOFTWARE.
 				attGr.query();
 				if (attGr.next()) {
 					var attStream = gsa.getContentStream(attGr.sys_id);
-					handled = true;
-					newAttSysId = gsa.writeContentStream(recordGr, this.va_name, attGr.content_type, attStream);
+					newAttContentType = attGr.content_type.toString();
+					newAttSysId = gsa.writeContentStream(recordGr, this.va_name, newAttContentType, attStream);
+				} else {
+					// template file record has no template file attached
+					// note: in the future dynamic file generating might be supported (via script field)
+					newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
 				}
-			}
-			
-			if (!handled) {
+			} else {
 				newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
 			}
 			
@@ -168,12 +190,41 @@ SOFTWARE.
 				vattGr.newRecord();
 				vattGr.attachment = newAttSysId;
 				vattGr.url = this.va_url;
-				vattGr.insert();
+				var vattSysId = vattGr.insert();
+				if (vattSysId) {
+					redirectURL += '?va_upload_success=true'
+						+ '&va_upload_attachment_sys_id=' + newAttSysId
+						+ '&va_upload_url=' + encodeURIComponent(this.va_url)
+						+ '&va_upload_name=' + encodeURIComponent(this.va_name);
+					
+					var attIconRuleGr = new GlideRecord('sys_attachment_icon_rule');
+					attIconRuleGr.addQuery('file_format_indicator', newAttContentType)
+						.addOrCondition('file_format_indicator', '.' + parts[parts.length - 1]);
+					attIconRuleGr.setLimit(1);
+					attIconRuleGr.query();
+					if (attIconRuleGr.next()) {
+						redirectURL += '&va_upload_icon=' + encodeURIComponent(attIconRuleGr.icon.toString());
+					} else {
+						redirectURL += '&va_upload_icon=' + encodeURIComponent('images/icons/attach_text.gifx');
+					}
+				} else {
+					redirectURL += '?va_upload_success=false'
+						+ '&va_upload_error_message=' + encodeURIComponent(gs.getMessage('Failed to create Virtual Attachment'));
+				}
+			} else {
+				redirectURL += '?va_upload_success=false'
+					+ '&va_upload_error_message=' + encodeURIComponent(gs.getMessage('Failed to create Attachment'));
 			}
+		} else {
+			redirectURL += '?va_upload_success=false'
+				+ '&va_upload_error_message=' + encodeURIComponent(gs.getMessage('Insufficient privileges to access record'));
 		}
+	} else {
+		redirectURL += '?va_upload_success=false'
+			+ '&va_upload_error_message=' + encodeURIComponent(gs.getMessage('Invalid parameters'));
 	}
 	
-	response.sendRedirect("x_376096_va_virtual_attachment_upload.do?va_upload_success=true");
+	response.sendRedirect(redirectURL);
 	
 }).call(this, request, response);]]></processing_script>
         <sys_class_name>sys_ui_page</sys_class_name>
