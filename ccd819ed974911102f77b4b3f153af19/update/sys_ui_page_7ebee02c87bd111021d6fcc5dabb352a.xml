@@ -173,7 +173,7 @@ SOFTWARE.
 		recordGr.addQuery('sys_id', this.record_sys_id);
 		recordGr.setLimit(1);
 		recordGr.query();
-		if (recordGr.next()) {
+		if (recordGr.next() && recordGr.canWrite()) {
 			var gsa = new GlideSysAttachment();
 			var parts = this.va_name.split('.');
 			

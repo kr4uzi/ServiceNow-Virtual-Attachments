@@ -105,16 +105,15 @@ x_376096_va.virtual_attachments = (function() {
 			Array.prototype.slice.call(
 				$window.document.querySelectorAll('a.attachment.view_' + sys_id)
 			).forEach(function (node) {
-				if (node.onclick) {
-					if (node.onclick.toString().indexOf('tearOffAttachment') > -1) {
-						node.onclick = function () {
-							$window.open(url, sys_id + "_" + $window.tearOffWindowID++, viewWindowFeatures);
-						};
-					} else {
-						node.onclick = function () {
-							$window.open(url, '_blank').focus();
-						};
-					}
+				var onclick = node.getAttribute('onclick');
+				if (onclick && onclick.indexOf('tearOffAttachment') > -1) {
+					node.onclick = function () {
+						$window.open(url, sys_id + "_" + $window.tearOffWindowID++, viewWindowFeatures);
+					};
+				} else {
+					node.onclick = function () {
+						$window.open(url, '_blank').focus();
+					};
 				}
 			});
 		}
