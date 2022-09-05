@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><record_update>
-    <sys_dictionary action="INSERT_OR_UPDATE" element="file" table="x_376096_va_template_file">
+    <sys_dictionary action="INSERT_OR_UPDATE" element="script" table="x_376096_va_template_file">
         <active>true</active>
         <array>false</array>
         <attributes/>
@@ -13,10 +13,20 @@
         <choice/>
         <choice_field/>
         <choice_table/>
-        <column_label>File</column_label>
+        <column_label>Script</column_label>
         <comments/>
         <create_roles/>
-        <default_value/>
+        <default_value>/* global virtual_attachment */&#13;
+/* global gs */&#13;
+/* eslint no-undef: "error" */&#13;
+(function (virtual_attachment) {&#13;
+	&#13;
+	return {&#13;
+		'content_type': 'text/plain',&#13;
+		'content': gs.base64Encode(virtual_attachment.url)&#13;
+	};&#13;
+	&#13;
+})(virtual_attachment);</default_value>
         <defaultsort/>
         <delete_roles/>
         <dependent/>
@@ -26,15 +36,15 @@
         <dynamic_creation_script/>
         <dynamic_default_value/>
         <dynamic_ref_qual/>
-        <element>file</element>
+        <element>script</element>
         <element_reference>false</element_reference>
         <foreign_database/>
         <formula/>
         <function_definition/>
         <function_field>false</function_field>
-        <internal_type display_value="">file_attachment</internal_type>
+        <internal_type display_value="Script">script</internal_type>
         <mandatory>false</mandatory>
-        <max_length>40</max_length>
+        <max_length>8000</max_length>
         <name>x_376096_va_template_file</name>
         <next_element/>
         <primary>false</primary>
@@ -51,12 +61,12 @@
         <staged>false</staged>
         <sys_class_name>sys_dictionary</sys_class_name>
         <sys_created_by>admin</sys_created_by>
-        <sys_created_on>2022-09-03 21:42:05</sys_created_on>
-        <sys_name>File</sys_name>
+        <sys_created_on>2022-09-05 09:40:21</sys_created_on>
+        <sys_name>Script</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
-        <sys_update_name>sys_dictionary_x_376096_va_template_file_file</sys_update_name>
+        <sys_update_name>sys_dictionary_x_376096_va_template_file_script</sys_update_name>
         <table_reference>false</table_reference>
         <text_index>false</text_index>
         <unique>false</unique>

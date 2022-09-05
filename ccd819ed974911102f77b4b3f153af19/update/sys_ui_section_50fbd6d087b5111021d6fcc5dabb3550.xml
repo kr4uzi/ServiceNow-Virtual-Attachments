@@ -4,27 +4,55 @@
             <element>name</element>
             <position>0</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-09-03 21:44:06</sys_created_on>
-            <sys_id>97fb5ad087b5111021d6fcc5dabb352c</sys_id>
+            <sys_created_on>2022-09-05 09:46:12</sys_created_on>
+            <sys_id>b2da42f087f1911021d6fcc5dabb354d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_376096_va_template_file" sys_domain="global" view="Default view">50fbd6d087b5111021d6fcc5dabb3550</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-09-03 21:44:06</sys_updated_on>
+            <sys_updated_on>2022-09-05 09:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>advanced</element>
+            <position>1</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-09-05 09:46:12</sys_created_on>
+            <sys_id>76da42f087f1911021d6fcc5dabb354d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_376096_va_template_file" sys_domain="global" view="Default view">50fbd6d087b5111021d6fcc5dabb3550</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-09-05 09:46:12</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>
         <sys_ui_element action="INSERT_OR_UPDATE">
             <element>file</element>
-            <position>1</position>
+            <position>2</position>
             <sys_created_by>admin</sys_created_by>
-            <sys_created_on>2022-09-03 21:44:06</sys_created_on>
-            <sys_id>1bfb5ad087b5111021d6fcc5dabb352c</sys_id>
+            <sys_created_on>2022-09-05 09:46:12</sys_created_on>
+            <sys_id>f6da42f087f1911021d6fcc5dabb354d</sys_id>
             <sys_mod_count>0</sys_mod_count>
             <sys_ui_formatter/>
             <sys_ui_section caption="NULL" display_value="" name="x_376096_va_template_file" sys_domain="global" view="Default view">50fbd6d087b5111021d6fcc5dabb3550</sys_ui_section>
             <sys_updated_by>admin</sys_updated_by>
-            <sys_updated_on>2022-09-03 21:44:06</sys_updated_on>
+            <sys_updated_on>2022-09-05 09:46:12</sys_updated_on>
+            <sys_user/>
+            <type/>
+        </sys_ui_element>
+        <sys_ui_element action="INSERT_OR_UPDATE">
+            <element>script</element>
+            <position>3</position>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2022-09-05 09:46:12</sys_created_on>
+            <sys_id>7ada42f087f1911021d6fcc5dabb354d</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_ui_formatter/>
+            <sys_ui_section caption="NULL" display_value="" name="x_376096_va_template_file" sys_domain="global" view="Default view">50fbd6d087b5111021d6fcc5dabb3550</sys_ui_section>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2022-09-05 09:46:12</sys_updated_on>
             <sys_user/>
             <type/>
         </sys_ui_element>

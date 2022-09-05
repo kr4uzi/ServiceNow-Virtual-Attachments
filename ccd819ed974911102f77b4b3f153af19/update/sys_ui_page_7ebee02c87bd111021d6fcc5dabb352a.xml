@@ -104,6 +104,10 @@ SOFTWARE.
 			<script>
 				window.parent.va_ClearAttachmentInput();
 				window.parent.addAttachmentNameToForm('${jvar_upload_attachment_sys_id}', '${jvar_upload_name}', '${jvar_upload_url}', '${jvar_upload_icon}', 'true', 'true', 'false');
+				window.parent.x_376096_va.config.attachments['${jvar_upload_attachment_sys_id}'] = {
+					virtual: true,
+					url: '${jvar_upload_url}'
+				};
 			</script>
 		</j:when>
 		<j:when test="${jvar_upload_success == 'false'}">
@@ -115,16 +119,16 @@ SOFTWARE.
 			<g:ui_form onsubmit="return va_uploadVirtualAttachment(this)">
 				<input id="record_table_name" type="hidden" name="record_table_name" value="${sysparm_record_table_name}" />
 				<input id="record_sys_id" type="hidden" name="record_sys_id" value="${sysparm_record_sys_id}" />
-				<p id="va_error_message" class="help-block" style="display: none;"></p>
+				<p id="va_error_message" class="help-block" style="display: none; color: red;"></p>
 				<div class="form-group">
 					<label for="va_url" class="control-label">${jvar_file_url}</label>
 					<input id="va_url" name="va_url" type="url" class="form-control" onchange="va_setFilenameFromURL(this.value);" />
-					<p id="va_url_error" class="help-block" style="display: none;">${jvar_url_missing}</p>
+					<p id="va_url_error" class="help-block" style="display: none; color: red;">${jvar_url_missing}</p>
 				</div>
 				<div class="form-group">
 					<label for="va_name" class="control-label">${jvar_file_name}</label>
 					<input id="va_name" name="va_name" class="form-control" />
-					<p id="va_name_error" class="help-block" style="display: none;">${jvar_name_missing}</p>
+					<p id="va_name_error" class="help-block" style="display: none; color: red;">${jvar_name_missing}</p>
 				</div>
 				<div class="form-group">
 					<img id="va_loading" alt="${gs.getMessage('Please Wait')}" src="images/please_wait.gifx" style="margin: 6px 3px; display: none;" />
@@ -137,7 +141,7 @@ SOFTWARE.
 </j:jelly>]]></html>
         <name>virtual_attachment_upload</name>
         <processing_script><![CDATA[/* global request, response */
-/* global gs, GlideRecord, GlideRecordSecure, GlideSysAttachment, GlideURL */
+/* global gs, GlideRecord, GlideRecordSecure, GlideSysAttachment, GlideScopedEvaluator */
 /* eslint no-undef: "error" */
 (function (request, response) {
 	// request [GlideServletRequest]
@@ -168,18 +172,29 @@ SOFTWARE.
 			var newAttSysId;
 			var newAttContentType = 'text/plain';
 			if (tfGr.next()) {
-				var attGr = new GlideRecord('sys_attachment');
-				attGr.addQuery('sys_id', tfGr.getValue('file'));
-				attGr.setLimit(1);
-				attGr.query();
-				if (attGr.next()) {
-					var attStream = gsa.getContentStream(attGr.sys_id);
-					newAttContentType = attGr.content_type.toString();
-					newAttSysId = gsa.writeContentStream(recordGr, this.va_name, newAttContentType, attStream);
+				if (tfGr.advanced) {
+					var gse = new GlideScopedEvaluator();
+					gse.putVariable('virtual_attachment', {
+						url: this.va_url,
+						name: this.va_name
+					});
+					var result = gse.evaluateScript(tfGr, 'script');
+					if (result && result.content_type && result.content) {
+						newAttSysId = gsa.writeBase64(recordGr, this.va_name, result.content_type, result.content);
+					}
 				} else {
-					// template file record has no template file attached
-					// note: in the future dynamic file generating might be supported (via script field)
-					newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
+					var attGr = new GlideRecord('sys_attachment');
+					attGr.addQuery('sys_id', tfGr.getValue('file'));
+					attGr.setLimit(1);
+					attGr.query();
+					if (attGr.next()) {
+						var attStream = gsa.getContentStream(attGr.sys_id);
+						newAttContentType = attGr.content_type.toString();
+						newAttSysId = gsa.writeContentStream(recordGr, this.va_name, newAttContentType, attStream);
+					} else {
+						// template file record has no template file attached
+						newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
+					}
 				}
 			} else {
 				newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
@@ -198,14 +213,23 @@ SOFTWARE.
 						+ '&va_upload_name=' + encodeURIComponent(this.va_name);
 					
 					var attIconRuleGr = new GlideRecord('sys_attachment_icon_rule');
-					attIconRuleGr.addQuery('file_format_indicator', newAttContentType)
-						.addOrCondition('file_format_indicator', '.' + parts[parts.length - 1]);
+					attIconRuleGr.addQuery('select_icon_by', 'mime_type');
+					attIconRuleGr.addQuery('file_format_indicator', newAttContentType);
 					attIconRuleGr.setLimit(1);
 					attIconRuleGr.query();
 					if (attIconRuleGr.next()) {
 						redirectURL += '&va_upload_icon=' + encodeURIComponent(attIconRuleGr.icon.toString());
 					} else {
-						redirectURL += '&va_upload_icon=' + encodeURIComponent('images/icons/attach_text.gifx');
+						attIconRuleGr = new GlideRecord('sys_attachment_icon_rule');
+						attIconRuleGr.addQuery('select_icon_by', 'file_extension');
+						attIconRuleGr.addQuery('file_format_indicator', '.' + parts[parts.length - 1]);
+						attIconRuleGr.setLimit(1);
+						attIconRuleGr.query();
+						if (attIconRuleGr.next()) {
+							redirectURL += '&va_upload_icon=' + encodeURIComponent(attIconRuleGr.icon.toString());
+						} else {
+							redirectURL += '&va_upload_icon=' + encodeURIComponent('images/icons/attach_text.gifx');
+						}
 					}
 				} else {
 					redirectURL += '?va_upload_success=false'

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><database>
     <element db_object_id="052a925087b5111021d6fcc5dabb3570" label="Template File" max_length="40" name="x_376096_va_template_file" type="collection">
-        <element label="File" mandatory="true" max_length="40" name="file" type="file_attachment"/>
-        <element display="true" label="Name" mandatory="true" max_length="40" name="name" type="string"/>
+        <element label="Advanced" max_length="40" name="advanced" type="boolean"/>
+        <element label="File" max_length="40" name="file" type="file_attachment"/>
+        <element display="true" label="Name" max_length="40" name="name" type="string"/>
+        <element default="/* global virtual_attachment */&#13;&#10;/* global gs */&#13;&#10;/* eslint no-undef: &quot;error&quot; */&#13;&#10;(function (virtual_attachment) {&#13;&#10;&#9;&#13;&#10;&#9;return {&#13;&#10;&#9;&#9;'content_type': 'text/plain',&#13;&#10;&#9;&#9;'content': gs.base64Encode(virtual_attachment.url)&#13;&#10;&#9;};&#13;&#10;&#9;&#13;&#10;})(virtual_attachment);" label="Script" max_length="8000" name="script" type="script"/>
     </element>
 </database>

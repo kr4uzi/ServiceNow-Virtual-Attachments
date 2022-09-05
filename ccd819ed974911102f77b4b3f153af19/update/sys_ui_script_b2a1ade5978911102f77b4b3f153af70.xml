@@ -73,19 +73,16 @@ x_376096_va.virtual_attachments = (function() {
 			addButton.classList.add("btn", "btn-icon", "icon-document-all-generic", "navbar-btn");
 			addButton.title = $config.translations['Add Virtual Attachment'];
 			addButton.onclick = function () {
-				var iframe = "<iframe src='/x_376096_va_virtual_attachment_upload.do?record_table_name=" + $window.g_form.getTableName() + "&record_sys_id=" + $window.g_form.getUniqueValue() + "' style='border:0;overflow:hidden;' />";
 				var dialog = new GlideModal('x_376096_va_virtual_attachment_upload');
-				//var dialog = new GlideModal();
 				dialog.setTitle($config.translations['Add Virtual Attachment']);
 				dialog.setPreference('sysparm_record_table_name', $window.g_form.getTableName());
 				dialog.setPreference('sysparm_record_sys_id', $window.g_form.getUniqueValue());
-				dialog.setPreference('onPromptComplete', function () {
-					dialog.destroy();
+				dialog.on('beforeclose', function () {
+					modifyAttachmentLinks($window, $config);
 				});
-				dialog.setWidth(350);
+				dialog.setWidth(350); // modal-sm
 				dialog.setBackdropStatic(true);
 				dialog.render();
-				//dialog.renderWithContent(iframe);
 			};
 			
 			ootbAttachmentAdd.parentNode.insertBefore(addButton, ootbAttachmentAdd);
@@ -108,14 +105,16 @@ x_376096_va.virtual_attachments = (function() {
 			Array.prototype.slice.call(
 				$window.document.querySelectorAll('a.attachment.view_' + sys_id)
 			).forEach(function (node) {
-				if (node.onclick.toString().indexOf('tearOffAttachment') > -1) {
-					node.onclick = function () {
-						$window.open(url, sys_id + "_" + $window.tearOffWindowID++, viewWindowFeatures);
-					};
-				} else {
-					node.onclick = function () {
-						$window.open(url, '_blank').focus();
-					};
+				if (node.onclick) {
+					if (node.onclick.toString().indexOf('tearOffAttachment') > -1) {
+						node.onclick = function () {
+							$window.open(url, sys_id + "_" + $window.tearOffWindowID++, viewWindowFeatures);
+						};
+					} else {
+						node.onclick = function () {
+							$window.open(url, '_blank').focus();
+						};
+					}
 				}
 			});
 		}
