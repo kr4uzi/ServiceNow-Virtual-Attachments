@@ -155,7 +155,7 @@ SOFTWARE.
 </j:jelly>]]></html>
         <name>virtual_attachment_upload</name>
         <processing_script><![CDATA[/* global request, response */
-/* global gs, GlideRecord, GlideRecordSecure, GlideSysAttachment, GlideScopedEvaluator */
+/* global gs, GlideRecord, GlideRecordSecure, GlideSysAttachment, GlideScopedEvaluator, GlideStringUtil */
 /* eslint no-undef: "error" */
 (function (request, response) {
 	// request [GlideServletRequest]
@@ -177,41 +177,48 @@ SOFTWARE.
 			var gsa = new GlideSysAttachment();
 			var parts = this.va_name.split('.');
 			
+			var newAttSysId;
+			var newAttContentType = 'text/plain';
+			
 			var tfGr = new GlideRecord('x_376096_va_template_file');
+			tfGr.addQuery('advanced', false);
 			tfGr.addJoinQuery('sys_attachment', 'file', 'sys_id')
 				.addCondition('file_name', 'ENDSWITH', parts[parts.length - 1]);
 			tfGr.setLimit(1);
 			tfGr.query();
-			
-			var newAttSysId;
-			var newAttContentType = 'text/plain';
 			if (tfGr.next()) {
-				if (tfGr.advanced) {
+				var attGr = new GlideRecord('sys_attachment');
+				attGr.addQuery('sys_id', tfGr.getValue('file'));
+				attGr.setLimit(1);
+				attGr.query();
+				if (attGr.next()) {
+					var attStream = gsa.getContentStream(attGr.sys_id);
+					newAttContentType = attGr.content_type.toString();
+					newAttSysId = gsa.writeContentStream(recordGr, this.va_name, newAttContentType, attStream);
+				} else {
+					// template file record has no template file attached (should not be possible)
+					newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
+				}
+			} else {
+				tfGr = new GlideRecord('x_376096_va_template_file');
+				tfGr.addQuery('advanced', true);
+				tfGr.addQuery('extension', 'ENDSWITH', parts[parts.length - 1]);
+				tfGr.setLimit(1);
+				tfGr.query();
+				if (tfGr.next()) {
 					var gse = new GlideScopedEvaluator();
 					gse.putVariable('virtual_attachment', {
 						url: this.va_url,
 						name: this.va_name
 					});
+						
 					var result = gse.evaluateScript(tfGr, 'script');
 					if (result && result.content_type && result.content) {
 						newAttSysId = gsa.writeBase64(recordGr, this.va_name, result.content_type, result.content);
 					}
-				} else {
-					var attGr = new GlideRecord('sys_attachment');
-					attGr.addQuery('sys_id', tfGr.getValue('file'));
-					attGr.setLimit(1);
-					attGr.query();
-					if (attGr.next()) {
-						var attStream = gsa.getContentStream(attGr.sys_id);
-						newAttContentType = attGr.content_type.toString();
-						newAttSysId = gsa.writeContentStream(recordGr, this.va_name, newAttContentType, attStream);
-					} else {
-						// template file record has no template file attached
-						newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
-					}
+				} else {				
+					newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
 				}
-			} else {
-				newAttSysId = gsa.write(recordGr, this.va_name, 'text/plain', this.va_url);
 			}
 			
 			if (newAttSysId) {

@@ -5,15 +5,15 @@
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 09:44:27</sys_created_on>
         <sys_id>fcca3de5970d11102f77b4b3f153af8d</sys_id>
-        <sys_mod_count>0</sys_mod_count>
         <sys_name>Virtual Attachments</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_update_name>sys_properties_category_fcca3de5970d11102f77b4b3f153af8d</sys_update_name>
-        <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2022-08-01 09:44:27</sys_updated_on>
-        <title/>
+        <title><![CDATA[<p>Virtual URL attachments:<br />Instead of uploading a file directly, the user can instead provide a download link that will be shown as a regular attachment.<br />If the users clicks the attachment link, he will be redirected to the URL that was provided when creating the attachment.</p>
+<p>The following modes are supported:</p>
+<table style="border-collapse: collapse; width: 100.066%;" border="1"><tbody><tr><td style="width: 12.3678%;">global</td><td style="width: 87.7646%;">Virtual Attachments are enabled on all forms</td></tr><tr><td style="width: 12.3678%;">table</td><td style="width: 87.7646%;">Virtual Attachments are only activated on the tables configured by the property x_376096_va.virtual_attachments.tables</td></tr><tr><td style="width: 12.3678%;">script</td><td style="width: 87.7646%;">Virtual Attachments are only activated on records that the property x_376096_va.virtual_attachments.script returns true on</td></tr><tr><td style="width: 12.3678%;">formatter</td><td style="width: 87.7646%;">Virtual Attachments are only activated on forms that have included the &#39;Virtual Attachments&#39; on the form (via Configure &gt; Form Layout)</td></tr></tbody></table>
+<p> </p>]]></title>
     </sys_properties_category>
     <sys_translated_text action="delete_multiple" query="documentkey=fcca3de5970d11102f77b4b3f153af8d"/>
 </record_update>
