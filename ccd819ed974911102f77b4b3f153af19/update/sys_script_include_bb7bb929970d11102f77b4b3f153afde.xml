@@ -7,30 +7,7 @@
         <client_callable>true</client_callable>
         <description/>
         <name>ConfigUtil</name>
-        <script><![CDATA[/*
-MIT License
-
-Copyright (c) 2022 Markus Kraus
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-*/
-/* global global */
+        <script><![CDATA[/* global global */
 /* global gs, Class, GlideRecord, GlideRecordSecure, GlideScopedEvaluator, GlideSysAttachment */
 /* eslint no-undef: "error" */
 var ConfigUtil = Class.create();
@@ -120,10 +97,13 @@ ConfigUtil.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2022-08-01 09:52:41</sys_created_on>
         <sys_id>bb7bb929970d11102f77b4b3f153afde</sys_id>
+        <sys_mod_count>1</sys_mod_count>
         <sys_name>ConfigUtil</sys_name>
         <sys_package display_value="Virtual Attachments" source="x_376096_va">ccd819ed974911102f77b4b3f153af19</sys_package>
         <sys_policy/>
         <sys_scope display_value="Virtual Attachments">ccd819ed974911102f77b4b3f153af19</sys_scope>
         <sys_update_name>sys_script_include_bb7bb929970d11102f77b4b3f153afde</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2023-04-23 19:19:16</sys_updated_on>
     </sys_script_include>
 </record_update>
